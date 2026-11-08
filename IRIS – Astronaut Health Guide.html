@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IRIS – Astronaut Health Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04061a;--glass:rgba(22,30,64,.62);--line:rgba(160,175,230,.18);--text:#f1ecdf;--muted:#9ea9cc;--accent:#ff9447;--glow:#8f7bff;--ok:#5fe0a5;--warn:#f5c451;--bad:#ff6b7d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef0fa;--glass:rgba(255,255,255,.8);--line:rgba(60,70,130,.18);--text:#1a2146;--muted:#58638a;--accent:#d9631c;--glow:#6a55e6}}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);line-height:1.55;min-height:100vh;
+background:radial-gradient(900px 500px at 85% -10%,rgba(143,123,255,.28),transparent),radial-gradient(700px 500px at -10% 40%,rgba(255,148,71,.12),transparent),var(--bg);
+background-attachment:fixed}
+.stars{position:fixed;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1.2px 1.2px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 33% 72%,#fff,transparent),radial-gradient(1.4px 1.4px at 58% 28%,#fff,transparent),radial-gradient(1px 1px at 76% 64%,#fff,transparent),radial-gradient(1.2px 1.2px at 90% 12%,#fff,transparent),radial-gradient(1px 1px at 22% 90%,#fff,transparent),radial-gradient(1px 1px at 68% 90%,#fff,transparent);}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stars{display:none}}
+.wrap{position:relative;max-width:880px;margin:0 auto;padding:22px 18px 50px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:50px;height:50px;filter:drop-shadow(0 0 10px var(--glow))}
+.brand b{font-size:1.7rem;letter-spacing:.28em;font-weight:800}
+.brand small{display:block;color:var(--muted);font-size:.74rem;letter-spacing:.04em;margin-top:-4px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:.8rem;font-weight:700;backdrop-filter:blur(8px)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--warn);box-shadow:0 0 8px currentColor;color:var(--warn)}
+.dot.on{background:var(--ok);color:var(--ok)}.dot.pulse{animation:p 1s infinite}
+@keyframes p{50%{opacity:.25}}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px;scrollbar-width:none}
+.tabs button{flex:1;min-width:92px;border:1px solid var(--line);background:var(--glass);color:var(--muted);border-radius:14px;padding:9px 8px;font:inherit;font-size:.75rem;font-weight:700;cursor:pointer;backdrop-filter:blur(8px)}
+.tabs button span{display:block;font-size:1rem;color:var(--text)}
+.tabs button.on{border-color:var(--accent);color:var(--text);box-shadow:0 0 18px rgba(255,148,71,.25)}
+.tabs button.done span{color:var(--ok)}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:30px;backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.35);animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.eyebrow{color:var(--accent);font-weight:800;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:2rem;margin:.15em 0 .3em;line-height:1.15}
+p{margin:.5em 0}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.card{padding:22px}}
+ol{list-style:none;counter-reset:s;padding:0;margin:14px 0}
+ol li{counter-increment:s;display:flex;gap:12px;padding:8px 0}
+ol li:before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff6a88);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.85rem}
+.big{display:grid;place-items:center;position:relative}
+.ring{width:230px;height:230px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bg{stroke:var(--line)}.ring .fg{stroke:url(#g);transition:stroke-dashoffset .3s;filter:drop-shadow(0 0 8px var(--glow))}
+.big .in{position:absolute;text-align:center}.big .in b{font-size:2.6rem;display:block}
+.sweep{position:absolute;width:190px;height:190px;border-radius:50%;background:conic-gradient(from 0deg,transparent 70%,rgba(143,123,255,.45));animation:rot 2.4s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.stat{display:flex;gap:12px;margin:16px 0}
+.stat div{flex:1;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;background:rgba(0,0,0,.12)}
+.stat b{display:block;font-size:1.9rem;background:linear-gradient(135deg,var(--accent),#ff6a88);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:.78rem;color:var(--muted)}
+.feed{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;color:var(--muted);background:rgba(0,0,0,.22);border-radius:12px;padding:10px 12px;height:130px;overflow:hidden;margin-top:12px}
+.feed div{white-space:nowrap}.feed i{color:var(--ok);font-style:normal}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+@media(max-width:640px){.metrics{grid-template-columns:1fr}}
+.m{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(0,0,0,.12)}
+.m small{color:var(--muted);font-weight:700}.m .v{font-size:1.6rem;font-weight:800;display:flex;justify-content:space-between;align-items:baseline}
+.m .v em{font-size:.7rem;font-style:normal;padding:3px 9px;border-radius:99px;color:#04061a;font-weight:800}
+.ok{--c:var(--ok)}.warn{--c:var(--warn)}.bad{--c:var(--bad)}
+.m .v em{background:var(--c)}.m{border-left:4px solid var(--c,var(--line))}
+.verdict{border-radius:18px;padding:16px 18px;border:1.5px solid var(--c);background:rgba(0,0,0,.15);margin-top:6px}
+.verdict b{color:var(--c);font-size:1.15rem}
+.chk{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:16px;margin:10px 0;cursor:pointer;background:rgba(0,0,0,.1);transition:.2s}
+.chk.on{border-color:var(--ok);background:rgba(95,224,165,.1)}
+.chk input{width:22px;height:22px;accent-color:var(--ok);flex:none}
+.chk small{display:block;color:var(--muted)}
+.nav{display:flex;justify-content:space-between;margin-top:24px;gap:10px}
+.btn{border:0;border-radius:14px;padding:13px 26px;font:inherit;font-weight:800;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--accent),#ff6a88);box-shadow:0 8px 24px rgba(255,106,136,.3)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none}
+.demo{display:flex;gap:6px;align-items:center;font-size:.72rem;color:var(--muted);margin-top:22px;justify-content:center;flex-wrap:wrap}
+.demo button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:4px 12px;font:inherit;cursor:pointer}
+.demo button.on{color:var(--text);border-color:var(--accent)}
+.note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:12px}
+</style></head><body>
+<div class="stars"></div>
+<div class="wrap">
+<header>
+<div class="brand">
+<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c9bdff"/><stop offset="1" stop-color="#8f7bff"/></linearGradient></defs><ellipse cx="32" cy="32" rx="26" ry="13" stroke="url(#lg)" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="#1b2150" stroke="url(#lg)" stroke-width="2.5"/><path d="M32 26l1.6 4.4L38 32l-4.4 1.6L32 38l-1.6-4.4L26 32l4.4-1.6z" fill="#fff"/><path d="M4 40C16 56 52 56 60 20" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" opacity=".7"/></svg>
+<div><b>IRIS</b><small>Astronaut health guide</small></div></div>
+<div class="pill"><span class="dot" id="dot"></span><span id="ctext">Bed offline</span></div>
+</header>
+<div class="tabs" id="tabs"></div>
+<div class="card" id="card"></div>
+<div class="demo">Demo scenario:
+<button data-s="normal">Normal</button><button data-s="watch">Watch</button><button data-s="alert">Alert</button></div>
+<p class="note">Prototype from the IRIS NASA hackathon. Not a medical device. Follow your flight surgeon’s instructions.</p>
+</div>
+<script>
+/* ===== BedLink: the one place that talks to the MRI bed =====
+   Right now it simulates the bed. To use real hardware, replace connect() and scan()
+   with calls to the bed’s API (e.g. WebSocket or REST) that return the same shapes. */
+var SCEN={normal:{onsd:4.6,ref:.1,flat:0,pit:0,tiv:0,nfl:0},watch:{onsd:5.2,ref:.6,flat:1,pit:0,tiv:0,nfl:0},alert:{onsd:5.8,ref:1.1,flat:1,pit:1,tiv:1,nfl:0}};
+var scen="normal";
+var BedLink={
+ connect:function(){return new Promise(function(r){setTimeout(function(){r({id:"IRIS-BED-02",fw:"v1.3"})},2200)})},
+ occupied:function(){return new Promise(function(r){setTimeout(function(){r(true)},2600)})},
+ scan:function(onTick){return new Promise(function(r){var p=0,msgs=["brain structure","CSF fluid levels","brain volume","retinal thickness","optic nerve sheath","globe shape","refractive error","pituitary profile"];
+  var t=setInterval(function(){p+=2.5;onTick(Math.min(p,100),msgs[Math.floor(p/12.6)%8]);if(p>=100){clearInterval(t);r(JSON.parse(JSON.stringify(SCEN[scen])))}},200)})}
+};
+/* ===== App ===== */
+var S={cur:0,conn:null,occ:false,prog:0,data:null,done:{}},KEY="iris_done";
+try{S.done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+var $=function(i){return document.getElementById(i)};
+var NAMES=[["★","Start"],["◎","Connect"],["⇪","Position"],["◉","Scan"],["▤","Results"],["✚","Care"],["✓","Done"]];
+function level(d){var l=0;if(d.onsd>5.5||d.ref>=1)l=2;else if(d.onsd>5||d.ref>=.5)l=1;var c=d.flat+d.pit+d.tiv+d.nfl;if(c>=2)l=2;else if(c==1)l=Math.max(l,1);return l}
+var LV=[["ok","Normal","No SANS indicators found. Keep up your daily countermeasures."],["warn","Watch","Possible early SANS signs. Complete all four countermeasures today."],["bad","Alert","Several SANS indicators. Contact your flight surgeon today."]];
+function chip(l){return '<em>'+["Normal","Watch","Alert"][l]+'</em>'}
+function flag(label,v){return '<div class="m '+(v?"warn":"ok")+'"><small>'+label+'</small><div class="v">'+(v?"Detected":"None")+chip(v?1:0)+'</div></div>'}
+var P=[
+function(){return '<div class="grid"><div><div class="eyebrow">Welcome</div><h2>Your eyes, watched from orbit</h2><p>Weightlessness shifts fluid toward your head and can cause <b>SANS</b>, a condition that harms vision and thinking. IRIS watches for it while you sleep.</p><div class="stat"><div><b>70%</b><span>of long-duration astronauts show eye changes</span></div><div><b>15%</b><span>show more concerning signs</span></div></div></div>'+
+'<div class="big"><svg class="ring" viewBox="0 0 120 120" style="width:200px;height:200px;transform:none"><ellipse cx="60" cy="60" rx="50" ry="25" fill="none" stroke="url(#g)" stroke-width="3"/><circle cx="60" cy="60" r="17" fill="#1b2150" stroke="url(#g)" stroke-width="3"/><circle cx="60" cy="60" r="5" fill="#fff"/></svg></div></div>'+
+'<p class="muted" style="margin-top:16px">Step 1: IRIS links to your smart monitoring bed. This happens automatically.</p>'},
+function(){var c=S.conn;return '<div class="eyebrow">Step 1</div><h2>Linking to your bed</h2><p class="muted">IRIS connects to the MRI smart monitoring bed in your crew quarters and pulls your scan data directly.</p>'+
+'<div class="m '+(c?"ok":"warn")+'" style="margin-top:18px"><small>Connection</small><div class="v">'+(c?c.id:"Searching…")+chip(c?0:1).replace("Normal","Online").replace("Watch","Linking")+'</div>'+(c?'<small>Firmware '+c.fw+' · data stream ready</small>':'<small>Handshaking with bed…</small>')+'</div>'},
+function(){return '<div class="eyebrow">Step 2</div><h2>Get into position</h2><ol><li>Lie down on the bed and fasten the restraints.</li><li>Remove metal items and loose objects near your head.</li><li>Rest your head in the cradle and relax your face.</li></ol>'+
+'<div class="m '+(S.occ?"ok":"warn")+'"><small>Bed sensor</small><div class="v">'+(S.occ?"Astronaut detected":"Waiting for you…")+chip(S.occ?0:1).replace("Normal","Ready").replace("Watch","Waiting")+'</div></div>'},
+function(){return '<div class="eyebrow">Step 3</div><h2>Scanning</h2><p class="muted">Stay still. The bed collects brain and eye measurements and streams them to IRIS.</p>'+
+'<div class="grid"><div class="big"><div class="sweep" id="sw"></div><svg class="ring" viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="fg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="'+(S.data?0:326.7)+'"/></svg><div class="in"><b id="pc">'+(S.data?100:0)+'%</b><span class="muted" id="ph">'+(S.data?'Scan complete':'Starting…')+'</span></div></div>'+
+'<div class="feed" id="feed"></div></div>'},
+function(){var d=S.data,l=level(d);return '<div class="eyebrow">Step 4</div><h2>Your results</h2><p class="muted">Received live from '+S.conn.id+'.</p><div class="metrics">'+
+'<div class="m '+(d.onsd>5.5?"bad":d.onsd>5?"warn":"ok")+'"><small>Optic nerve sheath diameter</small><div class="v">'+d.onsd.toFixed(1)+' mm'+chip(d.onsd>5.5?2:d.onsd>5?1:0)+'</div></div>'+
+'<div class="m '+(d.ref>=1?"bad":d.ref>=.5?"warn":"ok")+'"><small>Refractive shift (farsighted)</small><div class="v">+'+d.ref.toFixed(2)+' D'+chip(d.ref>=1?2:d.ref>=.5?1:0)+'</div></div>'+
+flag("Posterior globe flattening",d.flat)+flag("Pituitary dome change",d.pit)+flag("Reduced intracranial CSF volume",d.tiv)+flag("Elevated NfL",d.nfl)+'</div>'+
+'<div class="verdict '+LV[l][0]+'"><b>'+LV[l][1]+'</b><p style="margin:.2em 0 0">'+LV[l][2]+'</p></div>'},
+function(){var it=[["cuffs","Venoconstrictive leg cuffs","Trap fluid away from your head"],["vit","B vitamins, folate and CoQ10","Protect retinal and neural health"],["gog","Pressurized goggles","Balance eye and skull pressure"],["diet","Diet and hydration","Keep sodium and fluids regulated"]];
+return '<div class="eyebrow">Step 5</div><h2>Today’s countermeasures</h2><p class="muted">Tap each one when you finish it.</p>'+it.map(function(i){return '<label class="chk '+(S.done[i[0]]?"on":"")+'"><input type="checkbox" '+(S.done[i[0]]?"checked":"")+' onchange="tick(\''+i[0]+'\',this)"><div><b>'+i[1]+'</b><small>'+i[2]+'</small></div></label>'}).join("")},
+function(){var c=Object.keys(S.done).filter(function(k){return S.done[k]}).length,l=S.data?level(S.data):0;return '<div class="eyebrow">Step 6</div><h2>All done</h2><p>Your profile is updated and the next scan will run automatically.</p><div class="stat"><div><b>'+LV[l][1]+'</b><span>latest status</span></div><div><b>'+c+'/4</b><span>countermeasures today</span></div></div>'+
+'<ol><li>'+(l?"Tell your flight surgeon on the next call.":"Keep up your routine.")+'</li><li>Report blurred vision, headaches or trouble with fine tasks right away.</li></ol><button class="btn ghost" onclick="again()">Run another scan</button>'}
+];
+function tick(k,b){S.done[k]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(S.done))}catch(e){}b.parentNode.className="chk"+(b.checked?" on":"")}
+function can(){return S.cur==1?!!S.conn:S.cur==2?S.occ:S.cur==3?!!S.data:true}
+function go(i){S.cur=Math.max(0,Math.min(6,i));render();window.scrollTo(0,0);enter()}
+function again(){S.data=null;S.prog=0;go(3)}
+function enter(){
+ if(S.cur==1&&!S.conn){BedLink.connect().then(function(c){S.conn=c;$("dot").className="dot on";$("ctext").textContent=c.id+" connected";if(S.cur==1)render()})}
+ if(S.cur==2&&!S.occ){BedLink.occupied().then(function(){S.occ=true;if(S.cur==2)render()})}
+ if(S.cur==3&&!S.data&&!S.running){S.running=1;var feed=$("feed");BedLink.scan(function(p,m){if(S.cur!=3)return;$("pc").textContent=Math.round(p)+"%";$("ph").textContent=m;$("fg").style.strokeDashoffset=326.7*(1-p/100);var d=document.createElement("div");d.innerHTML="<i>●</i> "+m+" … "+(Math.random()*9+1).toFixed(2);feed.appendChild(d);while(feed.children.length>7)feed.removeChild(feed.firstChild)}).then(function(d){S.data=d;S.running=0;if(S.cur==3){render()}})}
+}
+function render(){
+ $("tabs").innerHTML=NAMES.map(function(n,i){return '<button class="'+(i==S.cur?"on":i<S.cur?"done":"")+'" onclick="'+(i<=S.cur?"go("+i+")":"")+'"><span>'+(i<S.cur?"✓":n[0])+'</span>'+n[1]+'</button>'}).join("");
+ var last=S.cur==6;
+ $("card").innerHTML='<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c9bdff"/><stop offset="1" stop-color="#ff9447"/></linearGradient></defs></svg>'+P[S.cur]()+
+ '<div class="nav"><button class="btn ghost" onclick="go(S.cur-1)"'+(S.cur==0?" disabled":"")+'>Back</button>'+(last?'<span></span>':'<button class="btn" onclick="go(S.cur+1)"'+(can()?"":" disabled")+'>'+(S.cur==0?"Begin":"Next")+'</button>')+'</div>';
+ var b=$("card").querySelector(".nav .btn:not(.ghost)");
+}
+document.querySelectorAll(".demo button").forEach(function(b){b.className=b.dataset.s==scen?"on":"";b.onclick=function(){scen=b.dataset.s;document.querySelectorAll(".demo button").forEach(function(x){x.className=x.dataset.s==scen?"on":""});if(S.data&&!S.running){S.data=JSON.parse(JSON.stringify(SCEN[scen]));render()}}});
+render();
+</script></body></html>
